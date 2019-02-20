@@ -1,4 +1,5 @@
 <?php
+    $arrTelefonos = array();
     if( isset($_POST['txtUsuario']) ){
 
         if( $_POST['txtUsuario'] == 'rubensin' && $_POST['txtPassword'] == '123456' ){
@@ -6,6 +7,11 @@
         }
         else{
             header('location: acceso.php?estatus=0');
+        }
+    }
+    else{
+        if( isset($_GET['noTelefono']) ){
+            $arrTelefonos = file("telefonos_spam.txt");
         }
     }
 ?>
@@ -46,7 +52,7 @@
                     <td><?php echo $arTelefono[0]?></td>
                     <td><?php echo $arTelefono[1]?></td>
                     <td><button type="button" class="btn btn-primary">Editar</button></td>
-                    <td><button type="button" class="btn btn-danger">Borrar</button></td>
+                    <td><button type="button" class="btn btn-danger" onclick="eliminarNumero(<?php echo $arTelefono[0]?>)">Borrar</button></td>
                 </tr>
                 <?php
                 }

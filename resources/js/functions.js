@@ -26,3 +26,10 @@ function guardarNumero(){
     });
 }
 
+function eliminarNumero(noTelefono){
+    var r = confirm("¿Está seguro de eliminar el número?");
+    if( r ){
+        parent.location.href = "admon.php?noTelefono="+noTelefono;
+    }
+}
+
