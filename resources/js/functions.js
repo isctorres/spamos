@@ -33,3 +33,10 @@ function eliminarNumero(noTelefono){
     }
 }
 
+
+function verEdicion(noTelefono,remitente){
+    $("#myModal2").modal("show");
+    $("#noTelefonoUp").val(noTelefono);
+    $("#txtRemitenteUp").val(remitente);
+}
+
