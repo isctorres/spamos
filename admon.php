@@ -3,7 +3,8 @@
     if( isset($_POST['txtUsuario']) ){
 
         if( $_POST['txtUsuario'] == 'rubensin' && $_POST['txtPassword'] == '123456' ){
-            $arrTelefonos = file("telefonos_spam.txt");
+            if( file_exists("telefonos_spam.txt") )
+                $arrTelefonos = file("telefonos_spam.txt");
         }
         else{
             header('location: acceso.php?estatus=0');
@@ -11,7 +12,30 @@
     }
     else{
         if( isset($_GET['noTelefono']) ){
+            $telBuscar = $_GET['noTelefono'];
             $arrTelefonos = file("telefonos_spam.txt");
+
+            $posicion = 0;
+            $encontrado = false;
+            while($posicion < count($arrTelefonos) && !$encontrado ){
+                $arTelefono = explode("~",$arrTelefonos[$posicion]);
+                if( $arTelefono[0] == $telBuscar )
+                    $encontrado = true;
+                $posicion++;                    
+            }
+
+            if( $encontrado )
+            {
+                $arreglo1 = array_slice($arrTelefonos,0,$posicion-1);
+                $arreglo2 = array_slice($arrTelefonos,$posicion,count($arrTelefonos)-$posicion);
+                $arrTelefonos = array_merge($arreglo1,$arreglo2);
+
+                $file = fopen("telefonos_spam.txt","w");
+                foreach ($arrTelefonos as $tel ) {
+                    fwrite($file,$tel);
+                }
+                fclose($file);
+            }
         }
     }
 ?>
