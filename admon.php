@@ -50,7 +50,7 @@
                     $arTelefono = explode("~",$arrTelefonos[$posicion]);
                     if( $arTelefono[0] == $telBuscar ){
                         $arTelefono[1] = $remitente;
-                        $arrTelefonos[$posicion] = $arTelefono[0]."~".$arTelefono[1];
+                        $arrTelefonos[$posicion] = $arTelefono[0]."~".$arTelefono[1].PHP_EOL;
                     }
                     $posicion++;                    
                 }
