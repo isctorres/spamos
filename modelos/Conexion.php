@@ -1,7 +1,8 @@
 <?php
 	class Conexion{
 		
-		private $host = "127.0.0.1";
+		//private $host = "127.0.0.1";
+		private $host = "localhost";
 		private $user = "root";
 		private $pwd  = "";
 		private $bd   = "spam_db";
