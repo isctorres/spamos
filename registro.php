@@ -89,26 +89,3 @@
             '<button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>'.
         '</div>';
 ?>
-
-
-    
-<?php
-    /*if( isset($_GE["encontrado"]) )
-    {
-        $encontradoArchivo = $_GET["encontrado"];
-        if( $encontradoArchivo ){
-            // Mostrar informacion de telefono y descripcion
-        }
-        else{
-            // Mostrar pantalla de registro
-        }
-    }
-    else{
-        header("Location:consulta.php");
-        exit;
-    }
-
-
-   */
-    
-?>

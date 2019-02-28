@@ -12,6 +12,22 @@ function consultarTelefono(){
     });
 }
 
+// ENVIAMOS LA PETICION PARA EL REGISTRO EN LA BASE DE DATOS
+function consultarTelefonoBD(){
+    var pagina = $("#frmConsulta").serialize();
+    var url = "controladorbd.php";
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: pagina+"&opc=1",
+        cache: false,
+        success: function(data){
+            $("#content-modal").html(data);
+        }
+    });
+}
+
+
 function guardarNumero(){
     var pagina = $("#frmRegistro").serialize();
     var url = "registro.php";
