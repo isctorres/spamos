@@ -12,7 +12,7 @@ function consultarTelefono(){
     });
 }
 
-// ENVIAMOS LA PETICION PARA EL REGISTRO EN LA BASE DE DATOS
+// ENVIAMOS LA PETICION PARA CONSULTAR EL NUMERO DE TELEFONO EN LA BD
 function consultarTelefonoBD(){
     var pagina = $("#frmConsulta").serialize();
     var url = "controladorbd.php";
