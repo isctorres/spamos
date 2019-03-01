@@ -49,7 +49,7 @@
             
             $noTelefono   = $_POST["noTelefonoReg"];
             $nomRemitente = $_POST["txtRemitente"];
-            $sql = "INSERT INTO tbl_directorio(numero,entidad) VALUES('".$noTelefono."','".$nomRemitente."')";
+            $sql = "INSERT INTO tbl_directorio(entidad,numero) VALUES('".$nomRemitente."','".$noTelefono."')";
             $objTel->consulta($sql);
             if( $objTel->rowsAffected() == 1 )
                 $mensaje = "\nEl número de telefono se registro correctamente";
@@ -64,10 +64,10 @@
             while ( $tel = mysqli_fetch_array($resQuery) ) {
                 echo '<tr>';
                     echo '<th scope="row">'.$scope.'</th>';
-                    echo '<td>'.$tel[1].'</td>';
                     echo '<td>'.$tel[2].'</td>';
-                    echo '<td><button type="button" class="btn btn-primary" onclick="verEdicionBD(\''.$tel[1].'\',\''.$tel[2].'\')">Editar</button></td>';
-                    echo '<td><button type="button" class="btn btn-danger" onclick="eliminarNumeroBD(\''.$tel[1].'\')">Borrar</button></td>';
+                    echo '<td>'.$tel[1].'</td>';
+                    echo '<td><button type="button" class="btn btn-primary" onclick="verEdicionBD(\''.$tel[2].'\',\''.$tel[1].'\')">Editar</button></td>';
+                    echo '<td><button type="button" class="btn btn-danger" onclick="eliminarNumeroBD(\''.$tel[2].'\')">Borrar</button></td>';
                 echo '</tr>';
                 $scope++;
             }
@@ -75,15 +75,15 @@
         case 4: // ACTUALIZAR NÚMERO
             $noTelefono = $_POST['noTelefonoUp'];
             $remitente = $_POST['txtRemitenteUp'];
-            $sql      = "update tbl_directorio entidad = '".$remitente."' where numero = '".$noTelefono."'";
+            echo $sql      = "update tbl_directorio set entidad = '".$remitente."' where numero = '".$noTelefono."'";
             $objTel->consulta($sql);
-            echo $objTel->rowsAffected(); 
+            //echo $objTel->rowsAffected(); 
             break;
         case 5: // ELIMINAR NÚMERO
             $noTelefono = $_POST['noTelefono'];
             echo $sql      = "delete from tbl_directorio where numero = '".$noTelefono."'";
             $objTel->consulta($sql);
-            echo $objTel->rowsAffected(); 
+            //echo $objTel->rowsAffected(); 
     }
 
     function ContentModal($titulo,$colorAlerta,$mensaje,$cajasTexto,$footer){

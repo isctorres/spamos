@@ -87,7 +87,22 @@ function verEdicion(noTelefono,remitente){
 }
 
 function verEdicionBD(noTelefono,remitente){
-    $("#myModal2").modal("show");
+    $("#myModal3").modal("show");
     $("#noTelefonoUp").val(noTelefono);
     $("#txtRemitenteUp").val(remitente);
+}
+
+function editarNumero(){
+    var pagina = $("#frmEdicionBD").serialize();
+    var url = "controladorbd.php";
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: pagina+"&opc=4",
+        cache: false,
+        success: function(data){
+            $("#myModal3").modal("hide");
+            $("#tbNumeros").load("controladorbd.php",{opc:'3'});
+        }
+    });
 }

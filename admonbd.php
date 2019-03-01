@@ -1,5 +1,5 @@
 <?php
-    /*require_once "modelos/Telefono.php";
+    require_once "modelos/Telefono.php";
     $objTel   = new Telefono();
     
     $sql      = "insert into tbl_directorio (entidad,numero) values('Rubensin','4612279093')";
@@ -20,7 +20,8 @@
     $sql      = "select * from tbl_directorio";
     $resQuery = $objTel->consulta($sql);
     $noRows   = $resQuery->num_rows;
-    echo "Número de Registro Obtenidos: ".$noRows;*/  
+    echo "Número de Registro Obtenidos: ".$noRows;
+    die();
 ?>
 
 <!-- IMPLEMENTACION DE UN FORMULARIO-->
@@ -40,10 +41,10 @@
     
     <body class="text-center gradiente">
 
-        <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalTitle" aria-hidden="true">
+        <div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
-                    <form name="frmEdicion" id="frmEdicion" method="POST" action="admon.php">
+                    <form name="frmEdicionBD" id="frmEdicionBD">
                         <div class="modal-header">
                             <h5 class="modal-title">Editar Número</h5>
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -63,7 +64,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-default" >Actualizar</button>
+                            <button type="button" class="btn btn-default" onclick="editarNumero()" >Actualizar</button>
                             <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
                         </div>
                     </form>
@@ -71,21 +72,23 @@
             </div>
         </div>
 
-        <form class="frmDatos">
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Teléfono</th>
-                    <th scope="col">Remitente</th>
-                    <th scope="col">Acción</th>
-                    <th scope="col">Acción</th>
-                </tr>
-            </thead>
-            <tbody id="tbNumeros">
-            </tbody>
-        </table>
-        </form>
+        <div style="display:block">
+            <form class="frmDatos">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Teléfono</th>
+                        <th scope="col">Remitente</th>
+                        <th scope="col">Acción</th>
+                        <th scope="col">Acción</th>
+                    </tr>
+                </thead>
+                <tbody id="tbNumeros">
+                </tbody>
+            </table>
+            </form>
+        </div>
     </body>
 </html>
 
