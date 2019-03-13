@@ -3,28 +3,29 @@
     $objTel   = new Telefono();
     
     // inserción de números telefónicos
-    $sql      = "insert into tbl_directorio (entidad,numero) values('Rubensin','4612279093')";
+    $sql      = "insert into tbl_directorio (entidad,numero) values('Rubensin','4612279090')";
     $objTel->consulta($sql);
     $noRows   = $objTel->rowsAffected(); 
     echo "Número de Registros Insertados: ".$noRows."<br>";
 
     // actualización de números telefónicos
-    $sql      = "update tbl_directorio set entidad = 'Rubensito' where numero = '4612279093'";
+    $sql      = "update tbl_directorio set entidad = 'Rubensito' where numero = '4612279090'";
     $objTel->consulta($sql);
     $noRows   = $objTel->rowsAffected(); 
     echo "Número de Registros Actualizados: ".$noRows."<br>";
 
     // borrar datos de números telefónicos
-    $sql      = "delete from tbl_directorio where numero = '4612279093'";
+    $sql      = "delete from tbl_directorio where numero = '4612279090'";
     $objTel->consulta($sql);
     $noRows   = $objTel->rowsAffected(); 
     echo "Número de Registros Eliminados: ".$noRows."<br>";
 
     // consultar los números telefónicos
     $sql      = "select * from tbl_directorio";
-    $resQuery = $objTel->consulta($sql);
-    $noRows   = $resQuery->num_rows;
-    echo "Número de Registro Obtenidos: ".$noRows;*/
+    $objTel->consulta($sql);
+    $noRows   =  $objTel->rowsSelected();
+    echo "Número de Registro Obtenidos: ".$noRows;
+    die();*/
 ?>
 
 <!-- IMPLEMENTACION DE UN FORMULARIO-->
