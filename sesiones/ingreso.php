@@ -13,7 +13,7 @@
             $objEmpleado = new Empleado();   
             $datosEmp = $objEmpleado->validaEmpleado($_POST['userEmail'],$_POST['userPassword']);
             $_SESSION['datosEmp'] = $datosEmp;
-            header('Location: principal.php',);
+            header('Location: principal.php');
             exit(0);
         }
     }
@@ -39,6 +39,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-offset-5 col-md-3">
+                <span <?= (isset($error)) ? 'style="background-color: #FF0000; text-align:center; color:white; display:block"' : ''?>><?= (isset($error)) ? $errores[$error] : ""?></span>
                 <div class="form-login">
                     <h4>Bienvenido</h4>
                     <input type="email" id="userEmail" name="userEmail" class="form-control input-sm chat-input" placeholder="Email" required />
@@ -49,6 +50,7 @@
                     </br>
                     <input type="text" name="captcha_code" size="10" maxlength="6" required />
                     <a href="#" onclick="document.getElementById('captcha').src = './librerias/securimage/securimage_show.php?' + Math.random(); return false">[ Different Image ]</a>
+                    </br>
                     <div class="wrapper">
                         <span class="group-btn">     
                             <button type="submit" class="btn btn-primary btn-md">Ingresar <i class="fa fa-sign-in"></i></button>
