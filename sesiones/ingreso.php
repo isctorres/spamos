@@ -10,8 +10,12 @@
             $error = 1;
         }
         else{
-            $objEmpleado = new Empleado();   
-            $datosEmp = $objEmpleado->validaEmpleado($_POST['userEmail'],$_POST['userPassword']);
+            $objEmpleado = new Empleado();
+            $email = mb_convert_encoding($_POST['userEmail'],'UTF-8');
+            $pass  = mb_convert_encoding($_POST['userPassword']);
+
+            if(!filter_var($email,FILTER_VALIDATE_EMAIL);
+            $datosEmp = $objEmpleado->validaEmpleado($email,$pass);
         
             if( !empty($datosEmp['nomEmpleado']) ){
                 $_SESSION['datosEmp'] = $datosEmp;
