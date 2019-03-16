@@ -12,9 +12,14 @@
         else{
             $objEmpleado = new Empleado();   
             $datosEmp = $objEmpleado->validaEmpleado($_POST['userEmail'],$_POST['userPassword']);
-            $_SESSION['datosEmp'] = $datosEmp;
-            header('Location: principal.php');
-            exit(0);
+        
+            if( !empty($datosEmp['nomEmpleado']) ){
+                $_SESSION['datosEmp'] = $datosEmp;
+                header('Location: principal.php');
+                exit(0);
+            }
+            else
+                $error = 0;
         }
     }
 ?>
