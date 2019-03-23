@@ -11,11 +11,14 @@
         }
         else{
             $objEmpleado = new Empleado();
+            
             $email = mb_convert_encoding($_POST['userEmail'],'UTF-8');
-            $pass  = mb_convert_encoding($_POST['userPassword']);
+            $email = filter_var($email,FILTER_SANITIZE_EMAIL);
+            $pass  = mb_convert_encoding($_POST['userPassword'],'UTF-8');
+            $pass  = filter_var($pass,FILTER_SANITIZE_MAGIC_QUOTES);	
 
-            if(!filter_var($email,FILTER_VALIDATE_EMAIL);
-            $datosEmp = $objEmpleado->validaEmpleado($email,$pass);
+            if(!filter_var($email,FILTER_VALIDATE_EMAIL) )
+                $datosEmp = $objEmpleado->validaEmpleado($email,$pass);
         
             if( !empty($datosEmp['nomEmpleado']) ){
                 $_SESSION['datosEmp'] = $datosEmp;

@@ -5,11 +5,15 @@
         header('Location:consultabd.php');
 
     $objTel = new Telefono();
-    switch( $_POST['opc'] ){
+    // FILTRAMOS LA OPCION PARA EVITAR VALORES DIFERENTES A UN ENTERO
+    $opc = filter_var($_POST['opc'],FILTER_SANITIZE_NUMBER_INT);
+    switch( $opc ){
         case 1: // CASO PARA BUSCAR EL NUMERO DE TELEFONO Y REALIZAR LA VALIDACION DEL MISMO
             $titulo = "Resultado de la busqueda";
             $colorAlerta = "danger";
-            $noTelefono = $_POST["noTelefono"];
+
+            // LIMPIAMOS EL NUMERO DE TELEFONO QUE DE ALGUNA MANERA ESTA DEMÁS
+            $noTelefono = filter_var($_POST["noTelefono"],FILTER_SANITIZE_NUMBER_INT);
             $patron = "/^([0-9]{10})$/";
             if( !preg_match($patron,$noTelefono) ){
                 $mensaje = "<strong>Error</strong> El número es incorrecto ";
@@ -48,7 +52,10 @@
             $footer      = "";
             
             $noTelefono   = $_POST["noTelefonoReg"];
-            $nomRemitente = $_POST["txtRemitente"];
+            // SANITIZAMOS EL NOMBRE DEL REMITENTE
+            $nomRemitente = mb_convert_encoding($_POST["txtRemitente"],'UTF-8');
+            $nomRemitente = filter_var($nomRemitente,FILTER_SANITIZE_MAGIC_QUOTES);
+
             $sql = "INSERT INTO tbl_directorio(entidad,numero) VALUES('".$nomRemitente."','".$noTelefono."')";
             $objTel->consulta($sql);
             if( $objTel->rowsAffected() == 1 )
@@ -74,14 +81,16 @@
             break;
         case 4: // ACTUALIZAR NÚMERO
             $noTelefono = $_POST['noTelefonoUp'];
-            $remitente = $_POST['txtRemitenteUp'];
-            echo $sql      = "update tbl_directorio set entidad = '".$remitente."' where numero = '".$noTelefono."'";
+            // SANITIZAMOS EL NOMBRE DEL REMITENTE
+            $remitente = mb_convert_encoding($_POST["txtRemitenteUp"],'UTF-8');
+            $remitente = filter_var($remitente,FILTER_SANITIZE_MAGIC_QUOTES);
+            $sql      = "update tbl_directorio set entidad = '".$remitente."' where numero = '".$noTelefono."'";
             $objTel->consulta($sql);
             //echo $objTel->rowsAffected(); 
             break;
         case 5: // ELIMINAR NÚMERO
             $noTelefono = $_POST['noTelefono'];
-            echo $sql      = "delete from tbl_directorio where numero = '".$noTelefono."'";
+            $sql      = "delete from tbl_directorio where numero = '".$noTelefono."'";
             $objTel->consulta($sql);
             //echo $objTel->rowsAffected(); 
     }
